@@ -1,54 +1,50 @@
 # Script to help replace hackingtool images with new screenshots
 $ErrorActionPreference = "Stop"
 
-# Configuration - paths to your new screenshots
-# Update these paths to point to where you saved your screenshots
-$screenshotA00 = "path\to\your\anonymously_hiding_tools_screenshot.png"
-$screenshotA0 = "path\to\your\main_menu_screenshot.png"
-$screenshotA1 = "path\to\your\information_gathering_tools_screenshot.png"
-$screenshotA2 = "path\to\your\wireless_attack_tools_screenshot.png"
-$screenshotA4 = "path\to\your\anonsurf_screenshot.png"
+# Add required assemblies for screenshot capture
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
 
-# Function to copy a file with validation
-function Copy-Screenshot {
+# Function to capture a screenshot
+function Capture-Screenshot {
     param(
-        [string]$sourcePath,
-        [string]$destinationPath,
+        [string]$outputPath,
         [string]$imageName
     )
     
-    if (-not (Test-Path -Path $sourcePath)) {
-        Write-Host "ERROR: Screenshot not found at path: $sourcePath" -ForegroundColor Red
-        return $false
-    }
+    Write-Host ""
+    Write-Host "Ready to capture $imageName" -ForegroundColor Cyan
+    Write-Host "Please set up your terminal to show the correct screen now."
+    Write-Host "Press Enter when ready to capture the screenshot..." -ForegroundColor Yellow
+    $null = Read-Host
     
-    try {
-        Copy-Item -Path $sourcePath -Destination $destinationPath -Force
-        Write-Host "SUCCESS: Updated $imageName" -ForegroundColor Green
-        return $true
-    } catch {
-        Write-Host "ERROR: Failed to copy $imageName. Error: $_" -ForegroundColor Red
-        return $false
-    }
+    # Create a bitmap of the primary screen
+    $screen = [System.Windows.Forms.Screen]::PrimaryScreen
+    $bitmap = New-Object System.Drawing.Bitmap $screen.Bounds.Width, $screen.Bounds.Height
+    
+    # Create a graphics object from the bitmap
+    $graphic = [System.Drawing.Graphics]::FromImage($bitmap)
+    
+    # Capture the screen
+    $graphic.CopyFromScreen($screen.Bounds.X, $screen.Bounds.Y, 0, 0, $screen.Bounds.Size)
+    
+    # Save the screenshot
+    $bitmap.Save($outputPath, [System.Drawing.Imaging.ImageFormat]::Png)
+    
+    # Dispose objects
+    $graphic.Dispose()
+    $bitmap.Dispose()
+    
+    Write-Host "Screenshot captured and saved as $outputPath" -ForegroundColor Green
+    Write-Host ""
+    
+    return $true
 }
 
 # Main process
-Write-Host "=== HACKINGTOOL IMAGE REPLACEMENT UTILITY ===" -ForegroundColor Cyan
+Write-Host "=== HACKINGTOOL SCREENSHOT UTILITY ===" -ForegroundColor Cyan
+Write-Host "This utility will help you capture screenshots and save them to the appropriate files."
 Write-Host ""
-Write-Host "This script will replace the existing images with your new screenshots."
-Write-Host "First, edit this script and update the paths at the top to point to your screenshot files."
-Write-Host ""
-Write-Host "Then run the script again to perform the replacement."
-Write-Host ""
-
-# Check if the paths have been updated
-$defaultPath = "path\to\your"
-if ($screenshotA00 -like "*$defaultPath*") {
-    Write-Host "IMPORTANT: You need to edit this script first!" -ForegroundColor Yellow
-    Write-Host "Update the screenshot path variables at the top of the script with your actual file paths." -ForegroundColor Yellow
-    Write-Host "Then run the script again." -ForegroundColor Yellow
-    exit
-}
 
 # Create a backup if it doesn't exist yet
 $backupDir = "images/backup_before_replace"
@@ -65,22 +61,55 @@ if (-not (Test-Path -Path $backupDir)) {
     Write-Host "Backup created in $backupDir" -ForegroundColor Green
 }
 
-# Replace the images
-Write-Host "Replacing images with new screenshots..." -ForegroundColor Cyan
+Write-Host ""
+Write-Host "INSTRUCTIONS:" -ForegroundColor Yellow
+Write-Host "1. You will be prompted to set up each screen before capturing"
+Write-Host "2. For each image, navigate to the appropriate menu in hackingtool"
+Write-Host "3. When the screen is ready, press Enter to capture"
+Write-Host ""
+Write-Host "Press Enter to begin the capture process..." -ForegroundColor Green
+$null = Read-Host
+
+# Capture the screenshots one by one
 $success = $true
 
-$success = $success -and (Copy-Screenshot -sourcePath $screenshotA00 -destinationPath "images/A00.png" -imageName "A00.png (Anonymously Hiding Tool)")
-$success = $success -and (Copy-Screenshot -sourcePath $screenshotA0 -destinationPath "images/A0.png" -imageName "A0.png (Main Menu)")
-$success = $success -and (Copy-Screenshot -sourcePath $screenshotA1 -destinationPath "images/A1.png" -imageName "A1.png (Information Gathering Tools)")
-$success = $success -and (Copy-Screenshot -sourcePath $screenshotA2 -destinationPath "images/A2.png" -imageName "A2.png (Wireless Attack Tools)")
-$success = $success -and (Copy-Screenshot -sourcePath $screenshotA4 -destinationPath "images/A4.png" -imageName "A4.png (Anonsurf Tool)")
+# A00.png - Anonymously Hiding Tool
+Write-Host "====== CAPTURE 1 OF 5 ======" -ForegroundColor Cyan
+Write-Host "Navigate to the Anonymously Hiding Tool menu"
+Write-Host "This should show [1] Anonymously Surf, [2] Multitor options"
+$success = $success -and (Capture-Screenshot -outputPath "images/A00.png" -imageName "A00.png (Anonymously Hiding Tool)")
+
+# A0.png - Main Menu
+Write-Host "====== CAPTURE 2 OF 5 ======" -ForegroundColor Cyan
+Write-Host "Navigate to the main menu"
+Write-Host "This should show the main menu with the orange HACKING TOOL text"
+$success = $success -and (Capture-Screenshot -outputPath "images/A0.png" -imageName "A0.png (Main Menu)")
+
+# A1.png - Information Gathering Tools
+Write-Host "====== CAPTURE 3 OF 5 ======" -ForegroundColor Cyan
+Write-Host "Navigate to the Information Gathering Tools menu"
+Write-Host "This should show options like Nmap, Dracnmap, etc."
+$success = $success -and (Capture-Screenshot -outputPath "images/A1.png" -imageName "A1.png (Information Gathering Tools)")
+
+# A2.png - Wireless Attack Tools
+Write-Host "====== CAPTURE 4 OF 5 ======" -ForegroundColor Cyan
+Write-Host "Navigate to the Wireless Attack Tools menu"
+Write-Host "This should show WiFi-Pumpkin, pixiewps, etc."
+$success = $success -and (Capture-Screenshot -outputPath "images/A2.png" -imageName "A2.png (Wireless Attack Tools)")
+
+# A4.png - Anonsurf Tool
+Write-Host "====== CAPTURE 5 OF 5 ======" -ForegroundColor Cyan
+Write-Host "Navigate to the Anonsurf Tool screen"
+Write-Host "This should show the skull icon and Anonsurf options"
+$success = $success -and (Capture-Screenshot -outputPath "images/A4.png" -imageName "A4.png (Anonsurf Tool)")
 
 if ($success) {
     Write-Host ""
-    Write-Host "All images successfully replaced!" -ForegroundColor Green
+    Write-Host "All screenshots successfully captured and saved!" -ForegroundColor Green
     Write-Host "The original images were backed up to $backupDir" -ForegroundColor Green
+    Write-Host ""
+    Write-Host "When you push these changes to GitHub, the README will display the new screenshots."
 } else {
     Write-Host ""
-    Write-Host "Some images could not be replaced. Check the errors above." -ForegroundColor Red
-    Write-Host "The original images were backed up to $backupDir" -ForegroundColor Green
+    Write-Host "Some screenshots could not be captured. Check the errors above." -ForegroundColor Red
 } 
