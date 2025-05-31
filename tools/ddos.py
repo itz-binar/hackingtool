@@ -66,15 +66,36 @@ class Asyncrone(HackingTool):
         "SYN packet intensively to the destination."
     )
     INSTALL_COMMANDS = [
-        "git clone https://github.com/fatih4842/aSYNcrone.git",
-        "cd aSYNcrone && sudo gcc aSYNcrone.c -o aSYNcrone -lpthread",
+        "if [ ! -d 'aSYNcrone' ]; then git clone https://github.com/fatih4842/aSYNcrone.git; else echo 'aSYNcrone directory already exists, using existing installation'; fi",
+        "cd aSYNcrone && sudo gcc -o aSYNcrone aSYNcrone.c -lpthread || echo 'Compilation failed, trying alternative method...' && cd aSYNcrone && sudo gcc -o aSYNcrone aSYNcrone.c -pthread"
     ]
     PROJECT_URL = "https://github.com/fatihsnsy/aSYNcrone"
 
     def run(self):
+        # Check if the compiled binary exists
+        if not os.path.exists("aSYNcrone/aSYNcrone"):
+            print("aSYNcrone binary not found. Trying to compile again...")
+            os.system("cd aSYNcrone && sudo gcc -o aSYNcrone aSYNcrone.c -lpthread || sudo gcc -o aSYNcrone aSYNcrone.c -pthread")
+            if not os.path.exists("aSYNcrone/aSYNcrone"):
+                print("Failed to compile aSYNcrone. Please check if you have gcc installed.")
+                return
+        
         source_port = input("Enter Source Port >> ")
         target_ip = input("Enter Target IP >> ")
         target_port = input("Enter Target port >> ")
+        
+        # Validate inputs
+        try:
+            source_port = int(source_port)
+            target_port = int(target_port)
+            if source_port < 1 or source_port > 65535 or target_port < 1 or target_port > 65535:
+                print("Port numbers must be between 1 and 65535")
+                return
+        except ValueError:
+            print("Port numbers must be integers")
+            return
+            
+        print(f"Running aSYNcrone attack on {target_ip}:{target_port} from source port {source_port}...")
         os.system(f"cd aSYNcrone && sudo ./aSYNcrone {source_port} {target_ip} {target_port} 1000")
 
 
@@ -87,12 +108,12 @@ class UFONet(HackingTool):
         "More Usage Visit"
     )
     INSTALL_COMMANDS = [
-        "sudo apt-get install -y python3-venv",
-        "sudo git clone https://github.com/epsylon/ufonet.git",
+        "sudo apt-get install -y python3-venv python3-dev",
+        "if [ ! -d 'ufonet' ]; then sudo git clone https://github.com/epsylon/ufonet.git; else echo 'UFONet directory already exists'; fi",
         "cd ufonet && python3 -m venv ufonet-env",
-        "cd ufonet && . ufonet-env/bin/activate && pip install -r requirements.txt",
-        "cd ufonet && . ufonet-env/bin/activate && python3 setup.py install",
-        "sudo apt-get install -y python3-geoip python3-whois python3-crypto python3-requests python3-scapy"
+        "cd ufonet && . ufonet-env/bin/activate && pip install --upgrade pip",
+        "cd ufonet && . ufonet-env/bin/activate && pip install pycurl GeoIP python-geoip requests pycryptodomex whois scapy duckduckgo-search",
+        "sudo apt-get install -y python3-geoip python3-whois python3-scapy"
     ]
     PROJECT_URL = "https://github.com/epsylon/ufonet"
 
@@ -111,13 +132,15 @@ class UFONet(HackingTool):
             print("You may need to manually fix the cgi module issue.")
         
         try:
+            print("\nStarting UFONet. If you encounter errors, try these alternative commands:")
+            print("1. cd ufonet && . ufonet-env/bin/activate && python3 ufonet --gui")
+            print("2. cd ufonet && . ufonet-env/bin/activate && python3 ufonet --attack\n")
+            
             os.system("cd ufonet && . ufonet-env/bin/activate && python3 ufonet --gui")
         except Exception as e:
             print(f"Error running UFONet: {str(e)}")
-            print("\nAlternative method to run UFONet:")
-            print("1. cd ufonet")
-            print("2. . ufonet-env/bin/activate")
-            print("3. python3 ufonet --attack")
+            print("\nTry running UFONet manually:")
+            print("cd ufonet && . ufonet-env/bin/activate && python3 ufonet --attack")
 
 
 class GoldenEye(HackingTool):
