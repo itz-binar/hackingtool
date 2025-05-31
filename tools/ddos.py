@@ -96,7 +96,27 @@ class UFONet(HackingTool):
     PROJECT_URL = "https://github.com/epsylon/ufonet"
 
     def run(self):
-        os.system("cd ufonet && . ufonet-env/bin/activate && python3 ufonet --gui")
+        print("\nRunning UFONet with Python 3.11+ compatibility patch...")
+        
+        # First, apply the patch if needed
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        patch_script = os.path.join(current_dir, "ufonet_patch.py")
+        
+        if os.path.exists(patch_script):
+            print("Applying compatibility patch for Python 3.11+...")
+            os.system(f"python3 {patch_script}")
+        else:
+            print(f"Warning: Patch script not found at {patch_script}")
+            print("You may need to manually fix the cgi module issue.")
+        
+        try:
+            os.system("cd ufonet && . ufonet-env/bin/activate && python3 ufonet --gui")
+        except Exception as e:
+            print(f"Error running UFONet: {str(e)}")
+            print("\nAlternative method to run UFONet:")
+            print("1. cd ufonet")
+            print("2. . ufonet-env/bin/activate")
+            print("3. python3 ufonet --attack")
 
 
 class GoldenEye(HackingTool):
