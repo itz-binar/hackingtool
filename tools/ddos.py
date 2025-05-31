@@ -1,7 +1,7 @@
 # coding=utf-8
 import os
 import subprocess
-import shlex
+import sys
 
 from core import HackingTool
 from core import HackingToolsCollection
@@ -10,14 +10,14 @@ from core import HackingToolsCollection
 class ddos(HackingTool):
     TITLE = "ddos"
     DESCRIPTION = (
-        "Best DDoS Attack Script With 36 Plus Methods. "
-        "DDoS attacks\n"
+        "Best DDoS Attack Script With 36 Plus Methods."
+        "DDoS attacks\n\b "
         "for SECURITY TESTING PURPOSES ONLY! "
     )
 
     INSTALL_COMMANDS = [
         "git clone https://github.com/the-deepnet/ddos.git",
-        "cd ddos && sudo pip3 install -r requirements.txt",
+        "cd ddos && pip3 install -r requirements.txt",
     ]
     PROJECT_URL = "https://github.com/the-deepnet/ddos.git"
 
@@ -29,38 +29,47 @@ class ddos(HackingTool):
         multiple = input("Enter Multiple >> ")
         timer = input("Enter Timer >> ")
         
-        # Fix: using proper path and command structure
-        subprocess.run([
-            "sudo", "python3", 
-            os.path.join(os.getcwd(), "ddos", "ddos"),
-            method, url, "socks_type5.4.1", threads, 
-            proxylist, multiple, timer
-        ])
+        command = ["python3", "ddos/ddos.py", method, url, "socks_type5.4.1", 
+                  threads, proxylist, multiple, timer]
+        
+        try:
+            subprocess.run(command, check=True)
+        except subprocess.CalledProcessError:
+            print("Error executing ddos tool. Please check parameters and try again.")
+        except FileNotFoundError:
+            print("ddos tool not found. Make sure you have installed it correctly.")
+            print("Run the install command first: git clone https://github.com/the-deepnet/ddos.git")
 
 
 class SlowLoris(HackingTool):
     TITLE = "SlowLoris"
     DESCRIPTION = (
-        "Slowloris is basically an HTTP Denial of Service attack. "
-        "It sends lots of HTTP Requests"
+        "Slowloris is basically an HTTP Denial of Service attack."
+        "It send lots of HTTP Request"
     )
-    INSTALL_COMMANDS = ["sudo pip3 install slowloris"]
+    INSTALL_COMMANDS = ["pip3 install slowloris"]
 
     def run(self):
         target_site = input("Enter Target Site:- ")
-        subprocess.run(["slowloris", target_site])
+        try:
+            subprocess.run(["slowloris", target_site], check=True)
+        except subprocess.CalledProcessError:
+            print("Error executing SlowLoris. Make sure you have installed it correctly.")
+        except FileNotFoundError:
+            print("slowloris command not found. Make sure you have installed it correctly.")
+            print("Run the install command first: pip3 install slowloris")
 
 
 class Asyncrone(HackingTool):
     TITLE = "Asyncrone | Multifunction SYN Flood DDoS Weapon"
     DESCRIPTION = (
-        "aSYNcrone is a C language based, multifunction SYN Flood "
+        "aSYNcrone is a C language based, mulltifunction SYN Flood "
         "DDoS Weapon.\nDisable the destination system by sending a "
         "SYN packet intensively to the destination."
     )
     INSTALL_COMMANDS = [
         "git clone https://github.com/fatih4842/aSYNcrone.git",
-        "cd aSYNcrone && sudo gcc aSYNcrone.c -o aSYNcrone -lpthread",
+        "cd aSYNcrone && gcc aSYNcrone.c -o aSYNcrone -lpthread",
     ]
     PROJECT_URL = "https://github.com/fatihsnsy/aSYNcrone"
 
@@ -69,27 +78,33 @@ class Asyncrone(HackingTool):
         target_ip = input("Enter Target IP >> ")
         target_port = input("Enter Target port >> ")
         
-        # Fix: using proper path and command structure
-        asyncrone_path = os.path.join(os.getcwd(), "aSYNcrone", "aSYNcrone")
-        subprocess.run([
-            "sudo", asyncrone_path, 
-            source_port, target_ip, target_port, "1000"
-        ])
+        try:
+            os.chdir("aSYNcrone")
+            subprocess.run(["./aSYNcrone", source_port, target_ip, target_port, "1000"], check=True)
+            os.chdir("..")
+        except subprocess.CalledProcessError:
+            print("Error executing aSYNcrone. Please check parameters and try again.")
+        except FileNotFoundError:
+            print("aSYNcrone not found. Make sure you have installed it correctly.")
+            print("Run the install command first.")
+        except Exception as e:
+            print(f"Error: {str(e)}")
+            os.chdir("..")
 
 
 class UFONet(HackingTool):
-    TITLE = "UFOnet"
+    TITLE = "UFONet"
     DESCRIPTION = (
         "UFONet - is a free software, P2P and cryptographic "
         "-disruptive \n toolkit- that allows to perform DoS and "
-        "DDoS attacks\n"
-        "More Usage Visit: https://github.com/epsylon/ufonet"
+        "DDoS attacks\n\b "
+        "More Usage Visit"
     )
     INSTALL_COMMANDS = [
-        "sudo git clone https://github.com/epsylon/ufonet.git",
-        "cd ufonet && sudo python3 setup.py install && sudo pip3 install GeoIP python-geoip pygeoip requests pycryptodome pycurl whois scapy-python3",
+        "git clone https://github.com/epsylon/ufonet.git",
+        "cd ufonet && python3 setup.py install && pip3 install GeoIP python-geoip pygeoip requests pycrypto pycurl whois scapy-python3",
     ]
-    RUN_COMMANDS = ["cd ufonet && sudo python3 ufonet --gui"]
+    RUN_COMMANDS = ["cd ufonet && python3 ufonet --gui"]
     PROJECT_URL = "https://github.com/epsylon/ufonet"
 
 
@@ -100,24 +115,26 @@ class GoldenEye(HackingTool):
         "GoldenEye is a HTTP DoS Test Tool."
     )
     INSTALL_COMMANDS = [
-        "sudo git clone https://github.com/jseidl/GoldenEye.git && "
+        "git clone https://github.com/jseidl/GoldenEye.git && "
         "chmod -R 755 GoldenEye"
     ]
     PROJECT_URL = "https://github.com/jseidl/GoldenEye"
 
     def run(self):
-        target_url = input("Enter Target URL (e.g. http://example.com): ")
-        if target_url:
-            goldeneye_path = os.path.join(os.getcwd(), "GoldenEye", "goldeneye.py")
-            subprocess.run(["sudo", "python3", goldeneye_path, target_url])
-        else:
-            print("\033[91mError: Target URL required\033[0m")
-            print("\033[96mUSAGE: ./goldeneye.py <url> [OPTIONS]\033[0m")
+        try:
+            os.chdir("GoldenEye")
+            os.system("./goldeneye.py")
+            print("\033[96m Go to Directory \n [*] USAGE: ./goldeneye.py <url> [OPTIONS]")
+            os.chdir("..")
+        except Exception as e:
+            print(f"Error: {str(e)}")
+            if os.path.exists("GoldenEye"):
+                os.chdir("..")
 
 
 class Saphyra(HackingTool):
     TITLE = "SaphyraDDoS"
-    DESCRIPTION = "A complex python code to DDoS any website with a very easy usage!\n"
+    DESCRIPTION = "A complex python code to DDoS any website with a very easy usage.!\n"
     INSTALL_COMMANDS = [
         "git clone https://github.com/anonymous24x7/Saphyra-DDoS.git",
         "cd Saphyra-DDoS && chmod +x saphyra.py",
@@ -126,15 +143,14 @@ class Saphyra(HackingTool):
 
     def run(self):
         url = input("Enter url>>> ")
-        if url:
-            try:
-                saphyra_path = os.path.join(os.getcwd(), "Saphyra-DDoS", "saphyra.py") 
-                subprocess.run(["python3", saphyra_path, url])
-            except Exception as e:
-                print(f"Error: {str(e)}")
-                print("Enter a valid url.")
-        else:
-            print("\033[91mError: URL required\033[0m")
+        try:
+            os.chdir("Saphyra-DDoS")
+            os.system(f"python saphyra.py {url}")
+            os.chdir("..")
+        except Exception as e:
+            print(f"Error: {str(e)}")
+            if os.path.exists("Saphyra-DDoS"):
+                os.chdir("..")
 
 
 class DDOSTools(HackingToolsCollection):
