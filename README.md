@@ -1,13 +1,4 @@
 ### All in One Hacking tool For Hackers🥇
-![](https://img.shields.io/github/license/itz-binar/hackingtool)
-![](https://img.shields.io/github/issues/itz-binar/hackingtool)
-![](https://img.shields.io/github/issues-closed/itz-binar/hackingtool)
-![](https://img.shields.io/badge/Python-3-blue)
-![](https://img.shields.io/github/forks/itz-binar/hackingtool)
-![](https://img.shields.io/github/stars/itz-binar/hackingtool)
-![](https://img.shields.io/github/last-commit/itz-binar/hackingtool)
-[![HitCount](http://hits.dwyl.com/itz-binar/hackingtool.svg)](http://hits.dwyl.com/itz-binar/hackingtool)
-![](https://img.shields.io/badge/platform-Linux%20%7C%20KaliLinux%20%7C%20ParrotOs-blue)
 
 #### Install Kali Linux in Windows10 Without VirtualBox [YOUTUBE](https://youtu.be/BsFhpIDcd9I) or use Docker
 
@@ -202,21 +193,11 @@
 - Terminal Multiplexer
 - [Crivo](https://github.com/GMDSantana/crivo)
 
-
-![](https://github.com/itz-binar/hackingtool/blob/master/images/A00.png)
-![](https://github.com/itz-binar/hackingtool/blob/master/images/A0.png)
-![](https://github.com/itz-binar/hackingtool/blob/master/images/A1.png)
-![](https://github.com/itz-binar/hackingtool/blob/master/images/A2.png)
-![](https://github.com/itz-binar/hackingtool/blob/master/images/A4.png)
-
-## Installation For Linux <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="25" height="25"/></p><p align="center">
-
+## Installation For Linux
 
 ### !! RUN HACKINGTOOL AS ROOT !! 
 
-
 ## Steps are given below : 
-
 
 ## Step : 1 Download hackingtool
 
@@ -276,7 +257,6 @@ Enter the options and continue.
 
 #### Thanks to original Author of the tools used in hackingtool
 
-<img src ="https://img.shields.io/badge/Important-notice-red" />
 <h4>Please Don't Use for illegal Activity</h4>
 
 ### To do 
@@ -290,8 +270,6 @@ Enter the options and continue.
 [![YouTube](https://img.shields.io/badge/-YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white&link=https://www.youtube.com/@Binar_tech)](https://www.youtube.com/@Binar_tech)
 [![TikTok](https://img.shields.io/badge/-TikTok-000000?style=flat-square&logo=tiktok&logoColor=white&link=https://www.tiktok.com/@itz._.binar)](https://www.tiktok.com/@itz._.binar)
 [![Telegram](https://img.shields.io/badge/-Telegram-2CA5E0?style=flat-square&logo=telegram&logoColor=white&link=https://t.me/itz_binar01)](https://t.me/itz_binar01)
- 
-![Mr.itzbinar's github stats](https://github-readme-stats.vercel.app/api?username=itz-binar&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
 #### Don't Forgot to share with Your Friends 
 ### The new Update get will soon stay updated
