@@ -227,7 +227,47 @@ cd hackingtool
 sudo bash install.sh
 ```
 
-### Step 5: Run hackingtool
+### Step 5: Fix any path issues (recommended)
+
+Create and run the fix script to prevent path-related errors:
+
+```bash
+# Create fix_path.sh with the content from the troubleshooting section
+cat > fix_path.sh << 'EOL'
+#!/bin/bash
+
+# Fix the hackingtool path issue
+echo "Fixing hackingtool path issue..."
+
+# Define path file location and default path
+PATHFILE=~/hackingtoolpath.txt
+TOOLSPATH="/home/kali/hackingtool"
+
+# Create directory if it doesn't exist
+mkdir -p "$TOOLSPATH"
+
+# Delete path file if empty or overwrite with correct content
+if [ -f "$PATHFILE" ] && [ ! -s "$PATHFILE" ]; then
+    echo "Empty path file found. Removing..."
+    rm "$PATHFILE"
+fi
+
+# Create or overwrite path file
+echo "$TOOLSPATH" > "$PATHFILE"
+echo "Path file updated with: $TOOLSPATH"
+
+# Test read the file
+echo "Current path file content: $(cat $PATHFILE)"
+
+echo "Fix complete. You can now run 'sudo hackingtool'"
+EOL
+
+# Make it executable and run it
+chmod +x fix_path.sh
+sudo ./fix_path.sh
+```
+
+### Step 6: Run hackingtool
     
 ```bash
 sudo hackingtool
