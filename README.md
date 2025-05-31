@@ -75,7 +75,7 @@
 - [Breacher](https://github.com/s0md3v/Breacher)
 ### Wordlist Generator
 - [Cupp](https://github.com/Mebus/cupp.git)
-- [WordlistCreator](https://github.com//wlcreator)
+- [WordlistCreator](https://github.com/wlcreator)
 - [Goblin WordGenerator](https://github.com/UndeadSec/GoblinWordGenerator.git)
 - [Password list (1.4 Billion Clear Text Password)](https://github.com/Viralmaniar/SMWYG-Show-Me-What-You-Got)
 ### Wireless attack tools
@@ -85,8 +85,8 @@
 - [Fluxion](https://github.com/thehackingsage/Fluxion)
 - [Wifiphisher](https://github.com/wifiphisher/wifiphisher)
 - [Wifite](https://github.com/derv82/wifite2)
-- [EvilTwin](https://github.com//fakeap)
-- [Fastssh](https://github.com//fastssh)
+- [EvilTwin](https://github.com/fakeap)
+- [Fastssh](https://github.com/fastssh)
 - Howmanypeople
 ### SQL Injection Tools
 - [Sqlmap tool](https://github.com/sqlmapproject/sqlmap)
@@ -203,13 +203,13 @@
 - [Crivo](https://github.com/GMDSantana/crivo)
 
 
-![](https://github.com//hackingtool/blob/master/images/A00.png)
-![](https://github.com//hackingtool/blob/master/images/A0.png)
-![](https://github.com//hackingtool/blob/master/images/A1.png)
-![](https://github.com//hackingtool/blob/master/images/A2.png)
-![](https://github.com//hackingtool/blob/master/images/A4.png)
+![](https://github.com/itz-binar/hackingtool/blob/master/images/A00.png)
+![](https://github.com/itz-binar/hackingtool/blob/master/images/A0.png)
+![](https://github.com/itz-binar/hackingtool/blob/master/images/A1.png)
+![](https://github.com/itz-binar/hackingtool/blob/master/images/A2.png)
+![](https://github.com/itz-binar/hackingtool/blob/master/images/A4.png)
 
-## Installation For Linux <img src="https://konpa.github.io/devicon/devicon.git/icons/linux/linux-original.svg" alt="linux" width="25" height="25"/></p><p align="center">
+## Installation For Linux <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="25" height="25"/></p><p align="center">
 
 
 ### !! RUN HACKINGTOOL AS ROOT !! 
