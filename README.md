@@ -221,7 +221,7 @@
 
 ## Step : 1 Download hackingtool
 
-    git clone https://github.com//hackingtool.git
+    git clone https://github.com/itz-binar/hackingtool.git
 
 ## Step : 2 Give Permission to hackingtool
     
