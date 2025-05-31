@@ -291,7 +291,7 @@ Enter the options and continue.
 [![YouTube](https://img.shields.io/badge/-YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white&link=https://www.youtube.com/@Binar_tech)](https://www.youtube.com/@Binar_tech)
 [![TikTok](https://img.shields.io/badge/-TikTok-000000?style=flat-square&logo=tiktok&logoColor=white&link=https://www.tiktok.com/@itz._.binar)](https://www.tiktok.com/@itz._.binar)
 [![Telegram](https://img.shields.io/badge/-Telegram-2CA5E0?style=flat-square&logo=telegram&logoColor=white&link=https://t.me/itz_binar01)](https://t.me/itz_binar01)
-##### Your Favourite Tool is not in hackingtool or Suggestions Please [CLICK HERE](https://forms.gle/b235JoCKyUq5iM3t8)
+ 
 ![Mr.itzbinar's github stats](https://github-readme-stats.vercel.app/api?username=itz-binar&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
 #### Don't Forgot to share with Your Friends 
