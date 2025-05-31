@@ -51,7 +51,8 @@ class SlowLoris(HackingTool):
         "keeping the connections open and eventually overwhelming the server."
     )
     INSTALL_COMMANDS = [
-        "sudo pip3 install slowloris",
+        "sudo apt-get install -y python3-pipx || sudo apt install -y python3-pipx",
+        "pipx install slowloris",
     ]
     PROJECT_URL = "https://github.com/gkbrk/slowloris"
 
@@ -59,12 +60,12 @@ class SlowLoris(HackingTool):
         target_site = input("Enter Target Site:- ")
         num_sockets = input("Enter Number of Sockets (default 150):- ") or "150"
         try:
-            subprocess.run(["slowloris", target_site, "-s", num_sockets], check=True)
+            subprocess.run(["pipx", "run", "slowloris", target_site, "-s", num_sockets], check=True)
         except subprocess.CalledProcessError:
             print("Error running slowloris. Make sure it's installed correctly.")
         except FileNotFoundError:
             print("Slowloris not found. Please run the install command again.")
-            print("Command: sudo pip3 install slowloris")
+            print("Command: pipx install slowloris")
 
 
 class Asyncrone(HackingTool):
