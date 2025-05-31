@@ -215,14 +215,48 @@
 
     cd hackingtool
 
-## Step : 4 Run hackingtool
+## Step : 4 Run installation script
     
     sudo bash install.sh
 
-## Step : 5 For installing tools in directory
-
+## Step : 5 Run hackingtool
+    
     sudo hackingtool
 
+## Troubleshooting
+
+If you encounter a directory error like this:
+
+```
+/usr/local/bin/hackingtool: line 2: cd: /home/kali/Desktop/2/hackingtool: No such file or directory
+```
+
+Create a custom launcher script:
+
+```bash
+# Create a file named hackingtool_launcher.sh
+#!/bin/bash
+
+cd /path/to/your/hackingtool  # Replace with your actual path
+# Create virtualenv if it doesn't exist
+if [ ! -d "venv" ]; then
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+else
+    source venv/bin/activate
+fi
+
+# Run the tool
+python3 hackingtool.py
+```
+
+Then install it:
+
+```bash
+chmod +x hackingtool_launcher.sh
+sudo cp hackingtool_launcher.sh /usr/local/bin/hackingtool
+```
 
 ## Use image with Docker
 
