@@ -40,8 +40,10 @@ class SlowLoris(HackingTool):
         "keeping the connections open and eventually overwhelming the server."
     )
     INSTALL_COMMANDS = [
-        "sudo apt-get install -y python3-pipx || sudo apt install -y python3-pipx",
-        "pipx install slowloris",
+        "sudo apt-get install -y python3-venv",
+        "mkdir -p slowloris-tool",
+        "cd slowloris-tool && python3 -m venv slowloris-env",
+        "cd slowloris-tool && . slowloris-env/bin/activate && pip install slowloris"
     ]
     PROJECT_URL = "https://github.com/gkbrk/slowloris"
 
@@ -49,12 +51,11 @@ class SlowLoris(HackingTool):
         target_site = input("Enter Target Site:- ")
         num_sockets = input("Enter Number of Sockets (default 150):- ") or "150"
         try:
-            subprocess.run(["pipx", "run", "slowloris", target_site, "-s", num_sockets], check=True)
-        except subprocess.CalledProcessError:
-            print("Error running slowloris. Make sure it's installed correctly.")
-        except FileNotFoundError:
-            print("Slowloris not found. Please run the install command again.")
-            print("Command: pipx install slowloris")
+            os.system(f"cd slowloris-tool && . slowloris-env/bin/activate && python -m slowloris {target_site} -s {num_sockets}")
+        except Exception as e:
+            print(f"Error running slowloris: {str(e)}")
+            print("\nManual command to run slowloris:")
+            print(f"cd slowloris-tool && . slowloris-env/bin/activate && python -m slowloris {target_site} -s {num_sockets}")
 
 
 class Asyncrone(HackingTool):
@@ -148,11 +149,23 @@ class Saphyra(HackingTool):
     PROJECT_URL = "https://github.com/anonymous24x7/Saphyra-DDoS"
 
     def run(self):
+        # First, apply the indentation patch
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        patch_script = os.path.join(current_dir, "saphyra_patch.py")
+        
+        if os.path.exists(patch_script):
+            print("Applying indentation patch to fix TabError...")
+            os.system(f"python3 {patch_script}")
+        else:
+            print(f"Warning: Patch script not found at {patch_script}")
+            print("You may encounter indentation errors when running the tool.")
+        
         url = input("Enter url>>> ")
         try:
             os.system(f"cd Saphyra-DDoS && . saphyra-env/bin/activate && python saphyra.py {url}")
-        except Exception:
-            print("Enter a valid url.")
+        except Exception as e:
+            print(f"Error running Saphyra: {str(e)}")
+            print("If you're seeing TabError, try manually fixing the indentation in saphyra.py")
 
 
 class DDOSTools(HackingToolsCollection):
