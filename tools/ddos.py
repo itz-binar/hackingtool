@@ -130,7 +130,7 @@ class UFONet(HackingTool):
         "if [ ! -d 'ufonet' ]; then sudo git clone https://github.com/epsylon/ufonet.git; else echo 'UFONet directory already exists'; fi",
         "cd ufonet && python3 -m venv ufonet-env",
         "cd ufonet && . ufonet-env/bin/activate && pip install --upgrade pip",
-        "cd ufonet && . ufonet-env/bin/activate && pip install pycurl GeoIP python-geoip requests pycryptodomex whois scapy duckduckgo-search",
+        "cd ufonet && . ufonet-env/bin/activate && pip install pycurl GeoIP python-geoip pygeoip requests pycryptodomex whois scapy duckduckgo-search",
         "sudo apt-get install -y python3-geoip python3-whois python3-scapy"
     ]
     PROJECT_URL = "https://github.com/epsylon/ufonet"
@@ -138,16 +138,54 @@ class UFONet(HackingTool):
     def run(self):
         print("\nRunning UFONet with Python 3.11+ compatibility patch...")
         
-        # First, apply the patch if needed
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        patch_script = os.path.join(current_dir, "ufonet_patch.py")
-        
-        if os.path.exists(patch_script):
-            print("Applying compatibility patch for Python 3.11+...")
-            os.system(f"python3 {patch_script}")
+        # First, manually patch the cgi module issue
+        ufonet_main_file = os.path.join(os.getcwd(), "ufonet/core/main.py")
+        if os.path.exists(ufonet_main_file):
+            print(f"Found UFONet main file at: {ufonet_main_file}")
+            print("Applying direct patch for cgi module...")
+            
+            try:
+                # Backup the file
+                backup_file = f"{ufonet_main_file}.bak"
+                if not os.path.exists(backup_file):
+                    import shutil
+                    shutil.copy2(ufonet_main_file, backup_file)
+                    print(f"Created backup at {backup_file}")
+                
+                # Read the file
+                with open(ufonet_main_file, 'r') as f:
+                    content = f.read()
+                
+                # Apply the patch
+                if 'import io, socket, ssl, cgi, json, gzip' in content:
+                    content = content.replace(
+                        'import io, socket, ssl, cgi, json, gzip',
+                        'import io, socket, ssl, json, gzip\nfrom urllib.parse import parse_qs'
+                    )
+                    content = content.replace('cgi.parse_qs', 'parse_qs')
+                    
+                    # Write the patched content
+                    with open(ufonet_main_file, 'w') as f:
+                        f.write(content)
+                    
+                    print("Successfully patched UFONet for Python 3.11+ compatibility")
+                else:
+                    print("File already patched or has a different structure")
+            except Exception as e:
+                print(f"Error applying patch: {str(e)}")
         else:
-            print(f"Warning: Patch script not found at {patch_script}")
-            print("You may need to manually fix the cgi module issue.")
+            print(f"UFONet main file not found at: {ufonet_main_file}")
+            print("Looking for UFONet in other locations...")
+            
+            # Try the patch script as a fallback
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            patch_script = os.path.join(current_dir, "ufonet_patch.py")
+            
+            if os.path.exists(patch_script):
+                print("Applying compatibility patch using script...")
+                os.system(f"python3 {patch_script}")
+            else:
+                print(f"Warning: Patch script not found at {patch_script}")
         
         try:
             print("\nStarting UFONet. If you encounter errors, try these alternative commands:")

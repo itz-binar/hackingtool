@@ -227,50 +227,38 @@ cd hackingtool
 sudo bash install.sh
 ```
 
-### Step 5: Fix any path issues (recommended)
+### Step 5: Configure tools for modern environments
 
-Create and run the fix script to prevent path-related errors:
+Modern Linux distributions like newer versions of Kali Linux use externally managed Python environments, which can cause issues with many tools. Follow these steps to fix these issues:
 
 ```bash
-# Create fix_path.sh with the content from the troubleshooting section
-cat > fix_path.sh << 'EOL'
-#!/bin/bash
+# Make configuration scripts executable
+chmod +x tools/tool_config_helper.py tools/fix_all_tools.py
 
-# Fix the hackingtool path issue
-echo "Fixing hackingtool path issue..."
+# Run the configuration helper to set up the environment
+python3 tools/tool_config_helper.py
 
-# Define path file location and default path
-PATHFILE=~/hackingtoolpath.txt
-TOOLSPATH="/home/kali/hackingtool"
-
-# Create directory if it doesn't exist
-mkdir -p "$TOOLSPATH"
-
-# Delete path file if empty or overwrite with correct content
-if [ -f "$PATHFILE" ] && [ ! -s "$PATHFILE" ]; then
-    echo "Empty path file found. Removing..."
-    rm "$PATHFILE"
-fi
-
-# Create or overwrite path file
-echo "$TOOLSPATH" > "$PATHFILE"
-echo "Path file updated with: $TOOLSPATH"
-
-# Test read the file
-echo "Current path file content: $(cat $PATHFILE)"
-
-echo "Fix complete. You can now run 'sudo hackingtool'"
-EOL
-
-# Make it executable and run it
-chmod +x fix_path.sh
-sudo ./fix_path.sh
+# Fix all tools to work with virtual environments
+python3 tools/fix_all_tools.py
 ```
 
 ### Step 6: Run hackingtool
     
 ```bash
 sudo hackingtool
+```
+
+### Step 7: Running individual tools
+
+To run individual tools with their virtual environments:
+
+```bash
+# General format
+./run_tool.sh <tool_name> <command>
+
+# Examples:
+./run_tool.sh ddos python3 ddos.py
+./run_tool.sh sql_tools python3 sql_tools.py
 ```
 
 ## Troubleshooting Common Issues
@@ -357,7 +345,39 @@ chmod +x fix_path.sh
 sudo ./fix_path.sh
 ```
 
-### 3. Complete Reinstallation
+### 3. "externally-managed-environment" Error
+
+If you see errors like this when trying to install Python packages:
+
+```
+error: externally-managed-environment
+
+× This environment is externally managed
+```
+
+Use our configuration system which handles this automatically:
+
+```bash
+# Run the configuration helper
+python3 tools/tool_config_helper.py
+
+# Fix all tools
+python3 tools/fix_all_tools.py
+```
+
+### 4. Individual Tool Issues
+
+If a specific tool isn't working:
+
+```bash
+# Fix a specific tool
+python3 tools/fix_tool.py <tool_name>
+
+# Run the tool with its virtual environment
+./run_tool.sh <tool_name> <command>
+```
+
+### 5. Complete Reinstallation
 
 If you continue to have issues, try a complete reinstallation:
 
@@ -375,7 +395,16 @@ sudo ./install.sh
 
 # Fix path issue if needed
 echo "/home/kali/hackingtool" > ~/hackingtoolpath.txt
+
+# Configure tools
+chmod +x tools/tool_config_helper.py tools/fix_all_tools.py
+python3 tools/tool_config_helper.py
+python3 tools/fix_all_tools.py
 ```
+
+## Detailed Configuration Guide
+
+For more detailed information about our configuration system, see the [CONFIGURATION.md](CONFIGURATION.md) file.
 
 ## Use image with Docker
 

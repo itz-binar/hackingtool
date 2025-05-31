@@ -38,9 +38,25 @@ def patch_cgi_module(file_path):
     print(f"Patched: {file_path}")
 
 def main():
-    ufonet_dir = Path(os.path.expanduser("~/hackingtool/ufonet"))
-    if not ufonet_dir.exists():
-        print(f"UFONet directory not found at: {ufonet_dir}")
+    # Try multiple possible locations for the UFONet directory
+    possible_paths = [
+        Path(os.path.expanduser("~/hackingtool/ufonet")),
+        Path("/home/kali/hackingtool/ufonet"),
+        Path(os.getcwd()) / "ufonet",
+        Path(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "ufonet"))
+    ]
+    
+    ufonet_dir = None
+    for path in possible_paths:
+        if path.exists():
+            ufonet_dir = path
+            print(f"Found UFONet directory at: {ufonet_dir}")
+            break
+    
+    if not ufonet_dir:
+        print("UFONet directory not found. Tried these locations:")
+        for path in possible_paths:
+            print(f"  - {path}")
         return 1
     
     main_file = ufonet_dir / "core" / "main.py"
