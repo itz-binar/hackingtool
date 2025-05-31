@@ -201,29 +201,41 @@
 
 ### !! RUN HACKINGTOOL AS ROOT !! 
 
-## Steps are given below : 
+## Step-by-Step Installation Guide
 
-## Step : 1 Download hackingtool
+### Step 1: Download hackingtool
 
-    git clone https://github.com/itz-binar/hackingtool.git
+```bash
+git clone https://github.com/itz-binar/hackingtool.git
+```
 
-## Step : 2 Give Permission to hackingtool
+### Step 2: Give Permission to hackingtool
     
-    chmod -R 755 hackingtool  
+```bash
+chmod -R 755 hackingtool
+```
 
-## Step : 3 Move to hackingtool directory
+### Step 3: Move to hackingtool directory
 
-    cd hackingtool
+```bash
+cd hackingtool
+```
 
-## Step : 4 Run installation script
+### Step 4: Run installation script
     
-    sudo bash install.sh
+```bash
+sudo bash install.sh
+```
 
-## Step : 5 Run hackingtool
+### Step 5: Run hackingtool
     
-    sudo hackingtool
+```bash
+sudo hackingtool
+```
 
-## Troubleshooting
+## Troubleshooting Common Issues
+
+### 1. Directory Path Error
 
 If you encounter a directory error like this:
 
@@ -234,7 +246,7 @@ If you encounter a directory error like this:
 Create a custom launcher script:
 
 ```bash
-# Create a file named hackingtool_launcher.sh
+# Create a file named hackingtool_launcher.sh with the content below
 #!/bin/bash
 
 cd /path/to/your/hackingtool  # Replace with your actual path
@@ -245,15 +257,6 @@ if [ ! -d "venv" ]; then
     pip install -r requirements.txt
 else
     source venv/bin/activate
-fi
-
-# Create the path file if it doesn't exist
-PATHFILE=~/hackingtoolpath.txt
-if [ ! -f "$PATHFILE" ] || [ ! -s "$PATHFILE" ]; then
-    # Define a default tools installation path
-    TOOLSPATH="/home/kali/hackingtool"
-    echo "$TOOLSPATH" > "$PATHFILE"
-    echo "Created path file at $PATHFILE with default path: $TOOLSPATH"
 fi
 
 # Run the tool
@@ -267,9 +270,72 @@ chmod +x hackingtool_launcher.sh
 sudo cp hackingtool_launcher.sh /usr/local/bin/hackingtool
 ```
 
-### FileNotFoundError: No such file or directory: ''
+### 2. Empty Path File Error
 
-If you encounter this error, it means the tool can't find or read the path file. The fix is included in the launcher script above, which creates the path file with a default directory.
+If you encounter this error:
+
+```
+FileNotFoundError: [Errno 2] No such file or directory: ''
+```
+
+This happens because the path file (`~/hackingtoolpath.txt`) is empty or doesn't exist. Create a fix script:
+
+```bash
+# Create a file named fix_path.sh with the content below
+#!/bin/bash
+
+# Fix the hackingtool path issue
+echo "Fixing hackingtool path issue..."
+
+# Define path file location and default path
+PATHFILE=~/hackingtoolpath.txt
+TOOLSPATH="/home/kali/hackingtool"
+
+# Create directory if it doesn't exist
+mkdir -p "$TOOLSPATH"
+
+# Delete path file if empty or overwrite with correct content
+if [ -f "$PATHFILE" ] && [ ! -s "$PATHFILE" ]; then
+    echo "Empty path file found. Removing..."
+    rm "$PATHFILE"
+fi
+
+# Create or overwrite path file
+echo "$TOOLSPATH" > "$PATHFILE"
+echo "Path file updated with: $TOOLSPATH"
+
+# Test read the file
+echo "Current path file content: $(cat $PATHFILE)"
+
+echo "Fix complete. You can now run 'sudo hackingtool'"
+```
+
+Run the fix script:
+
+```bash
+chmod +x fix_path.sh
+sudo ./fix_path.sh
+```
+
+### 3. Complete Reinstallation
+
+If you continue to have issues, try a complete reinstallation:
+
+```bash
+# Remove existing installation
+sudo rm -rf /usr/share/hackingtool
+sudo rm /usr/local/bin/hackingtool
+rm -f ~/hackingtoolpath.txt
+
+# Clone the repository again
+git clone https://github.com/itz-binar/hackingtool.git
+cd hackingtool
+chmod +x install.sh
+sudo ./install.sh
+
+# Fix path issue if needed
+echo "/home/kali/hackingtool" > ~/hackingtoolpath.txt
+```
 
 ## Use image with Docker
 
