@@ -1,15 +1,15 @@
 ### All in One Hacking tool For Hackers🥇
-![](https://img.shields.io/github/license//hackingtool)
-![](https://img.shields.io/github/issues//hackingtool)
-![](https://img.shields.io/github/issues-closed//hackingtool)
+![](https://img.shields.io/github/license/itz-binar/hackingtool)
+![](https://img.shields.io/github/issues/itz-binar/hackingtool)
+![](https://img.shields.io/github/issues-closed/itz-binar/hackingtool)
 ![](https://img.shields.io/badge/Python-3-blue)
-![](https://img.shields.io/github/forks//hackingtool)
-![](https://img.shields.io/github/stars//hackingtool)
-![](https://img.shields.io/github/last-commit//hackingtool)
-[![HitCount](http://hits.dwyl.com//hackingtool.svg)](http://hits.dwyl.com//hackingtool)
+![](https://img.shields.io/github/forks/itz-binar/hackingtool)
+![](https://img.shields.io/github/stars/itz-binar/hackingtool)
+![](https://img.shields.io/github/last-commit/itz-binar/hackingtool)
+[![HitCount](http://hits.dwyl.com/itz-binar/hackingtool.svg)](http://hits.dwyl.com/itz-binar/hackingtool)
 ![](https://img.shields.io/badge/platform-Linux%20%7C%20KaliLinux%20%7C%20ParrotOs-blue)
 
-#### Install Kali Linux in WIndows10 Without VirtualBox [YOUTUBE](https://youtu.be/BsFhpIDcd9I) or use Docker
+#### Install Kali Linux in Windows10 Without VirtualBox [YOUTUBE](https://youtu.be/BsFhpIDcd9I) or use Docker
 
 ## Update Available V1.2.0 🚀 
 - [✔] Installation Bug Fixed
@@ -21,7 +21,6 @@
 - [x] Multitor Tools update
 - [X] Added Tool in wifijamming
 - [X] Added Tool in steganography
-
 
 
 # Hackingtool Menu 🧰
