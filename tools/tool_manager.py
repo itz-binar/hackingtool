@@ -31,7 +31,7 @@ class UpdateTool(HackingTool):
                   "sudo rm -rf /etc/hackingtool/;"
                   "mkdir hackingtool;"
                   "cd hackingtool;"
-                  "git clone https://github.com/Z4nzu/hackingtool.git;"
+                  "git clone https://github.com/itz-binar/hackingtool.git;"
                   "cd hackingtool;"
                   "sudo chmod +x install.sh;"
                   "./install.sh")
