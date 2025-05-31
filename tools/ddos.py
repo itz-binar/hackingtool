@@ -47,13 +47,24 @@ class SlowLoris(HackingTool):
     TITLE = "SlowLoris"
     DESCRIPTION = (
         "Slowloris is basically an HTTP Denial of Service attack."
-        "It send lots of HTTP Request"
+        "It sends lots of HTTP Request headers without completing the requests,"
+        "keeping the connections open and eventually overwhelming the server."
     )
-    INSTALL_COMMANDS = ["sudo pip3 install slowloris"]
+    INSTALL_COMMANDS = [
+        "sudo pip3 install slowloris",
+    ]
+    PROJECT_URL = "https://github.com/gkbrk/slowloris"
 
     def run(self):
         target_site = input("Enter Target Site:- ")
-        subprocess.run(["slowloris", target_site])
+        num_sockets = input("Enter Number of Sockets (default 150):- ") or "150"
+        try:
+            subprocess.run(["slowloris", target_site, "-s", num_sockets], check=True)
+        except subprocess.CalledProcessError:
+            print("Error running slowloris. Make sure it's installed correctly.")
+        except FileNotFoundError:
+            print("Slowloris not found. Please run the install command again.")
+            print("Command: sudo pip3 install slowloris")
 
 
 class Asyncrone(HackingTool):
