@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Save Screenshots to Hackingtool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .screenshot-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        input[type="file"] {
+            margin: 10px 0;
+        }
+        .instructions {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #4CAF50;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hackingtool Screenshot Update Tool</h1>
+    
+    <div class="instructions">
+        <h3>Instructions:</h3>
+        <p>This tool helps you update the screenshots in the Hackingtool repository.</p>
+        <ol>
+            <li>Take screenshots of the different menus in Hackingtool</li>
+            <li>Use this page to save each screenshot to the correct filename</li>
+            <li>Click "Save Screenshots" when done</li>
+        </ol>
+    </div>
+    
+    <div class="screenshot-section">
+        <h2>A00.png - Anonymously Hiding Tool</h2>
+        <input type="file" id="file-a00" accept="image/png">
+        <div id="preview-a00"></div>
+    </div>
+    
+    <div class="screenshot-section">
+        <h2>A0.png - Main Menu</h2>
+        <input type="file" id="file-a0" accept="image/png">
+        <div id="preview-a0"></div>
+    </div>
+    
+    <div class="screenshot-section">
+        <h2>A1.png - Information Gathering Tools</h2>
+        <input type="file" id="file-a1" accept="image/png">
+        <div id="preview-a1"></div>
+    </div>
+    
+    <div class="screenshot-section">
+        <h2>A2.png - Wireless Attack Tools</h2>
+        <input type="file" id="file-a2" accept="image/png">
+        <div id="preview-a2"></div>
+    </div>
+    
+    <div class="screenshot-section">
+        <h2>A4.png - Anonsurf Tool</h2>
+        <input type="file" id="file-a4" accept="image/png">
+        <div id="preview-a4"></div>
+    </div>
+    
+    <button id="save-btn">Save Screenshots</button>
+    
+    <script>
+        // Preview images when selected
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const file = this.files[0];
+                const previewId = this.id.replace('file-', 'preview-');
+                const preview = document.getElementById(previewId);
+                
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        preview.innerHTML = `<img src="${e.target.result}" style="max-width: 100%; max-height: 300px;">`;
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+        
+        // Save button functionality
+        document.getElementById('save-btn').addEventListener('click', function() {
+            // In a real implementation, this would save the files to the server
+            // For this demo, we'll just show a message
+            alert('In a real implementation, this would save the files to the images/ directory. Please manually copy your screenshots to the appropriate files in the images/ directory.');
+        });
+    </script>
+</body>
+</html> 
