@@ -247,6 +247,15 @@ else
     source venv/bin/activate
 fi
 
+# Create the path file if it doesn't exist
+PATHFILE=~/hackingtoolpath.txt
+if [ ! -f "$PATHFILE" ] || [ ! -s "$PATHFILE" ]; then
+    # Define a default tools installation path
+    TOOLSPATH="/home/kali/hackingtool"
+    echo "$TOOLSPATH" > "$PATHFILE"
+    echo "Created path file at $PATHFILE with default path: $TOOLSPATH"
+fi
+
 # Run the tool
 python3 hackingtool.py
 ```
@@ -257,6 +266,10 @@ Then install it:
 chmod +x hackingtool_launcher.sh
 sudo cp hackingtool_launcher.sh /usr/local/bin/hackingtool
 ```
+
+### FileNotFoundError: No such file or directory: ''
+
+If you encounter this error, it means the tool can't find or read the path file. The fix is included in the launcher script above, which creates the path file with a default directory.
 
 ## Use image with Docker
 

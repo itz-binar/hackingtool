@@ -10,5 +10,14 @@ else
     source venv/bin/activate
 fi
 
+# Create the path file if it doesn't exist
+PATHFILE=~/hackingtoolpath.txt
+if [ ! -f "$PATHFILE" ] || [ ! -s "$PATHFILE" ]; then
+    # Define a default tools installation path
+    TOOLSPATH="/home/kali/hackingtool"
+    echo "$TOOLSPATH" > "$PATHFILE"
+    echo "Created path file at $PATHFILE with default path: $TOOLSPATH"
+fi
+
 # Run the tool
 python3 hackingtool.py 
