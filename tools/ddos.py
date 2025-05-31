@@ -15,8 +15,10 @@ class ddos(HackingTool):
     )
 
     INSTALL_COMMANDS = [
+        "sudo apt-get install -y python3-venv",
         "git clone https://github.com/the-deepnet/ddos.git",
-        "cd ddos;sudo pip3 install -r requirements.txt",
+        "cd ddos && python3 -m venv ddos-env",
+        "cd ddos && . ddos-env/bin/activate && pip install -r requirements.txt"
     ]
     PROJECT_URL = "https://github.com/the-deepnet/ddos.git"
 
@@ -27,20 +29,7 @@ class ddos(HackingTool):
         proxylist = input(" Enter ProxyList >> ")
         multiple = input(" Enter Multiple >> ")
         timer = input(" Enter Timer >> ")
-        os.system("cd ddos;")
-        subprocess.run(
-            [
-                "sudo",
-                "python3 ddos",
-                method,
-                url,
-                "socks_type5.4.1",
-                threads,
-                proxylist,
-                multiple,
-                timer,
-            ]
-        )
+        os.system(f"cd ddos && . ddos-env/bin/activate && python3 ddos {method} {url} socks_type5.4.1 {threads} {proxylist} {multiple} {timer}")
 
 
 class SlowLoris(HackingTool):
@@ -77,7 +66,7 @@ class Asyncrone(HackingTool):
     )
     INSTALL_COMMANDS = [
         "git clone https://github.com/fatih4842/aSYNcrone.git",
-        "cd aSYNcrone;sudo gcc aSYNcrone.c -o aSYNcrone -lpthread",
+        "cd aSYNcrone && sudo gcc aSYNcrone.c -o aSYNcrone -lpthread",
     ]
     PROJECT_URL = "https://github.com/fatihsnsy/aSYNcrone"
 
@@ -85,14 +74,11 @@ class Asyncrone(HackingTool):
         source_port = input("Enter Source Port >> ")
         target_ip = input("Enter Target IP >> ")
         target_port = input("Enter Target port >> ")
-        os.system("cd aSYNcrone;")
-        subprocess.run(
-            ["sudo", "./aSYNcrone", source_port, target_ip, target_port, 1000]
-        )
+        os.system(f"cd aSYNcrone && sudo ./aSYNcrone {source_port} {target_ip} {target_port} 1000")
 
 
 class UFONet(HackingTool):
-    TITLE = "UFOnet"
+    TITLE = "UFONet"
     DESCRIPTION = (
         "UFONet - is a free software, P2P and cryptographic "
         "-disruptive \n toolkit- that allows to perform DoS and "
@@ -100,11 +86,17 @@ class UFONet(HackingTool):
         "More Usage Visit"
     )
     INSTALL_COMMANDS = [
+        "sudo apt-get install -y python3-venv",
         "sudo git clone https://github.com/epsylon/ufonet.git",
-        "cd ufonet;sudo python3 setup.py install;sudo pip3 install GeoIP;sudo pip3 install python-geoip;sudo pip3 install pygeoip;sudo pip3 install requests;sudo pip3 install pycrypto;sudo pip3 install pycurl;sudo pip3 install whois;sudo pip3 install scapy-python3",
+        "cd ufonet && python3 -m venv ufonet-env",
+        "cd ufonet && . ufonet-env/bin/activate && pip install -r requirements.txt",
+        "cd ufonet && . ufonet-env/bin/activate && python3 setup.py install",
+        "sudo apt-get install -y python3-geoip python3-whois python3-crypto python3-requests python3-scapy"
     ]
-    RUN_COMMANDS = ["sudo python3 ufonet --gui"]
     PROJECT_URL = "https://github.com/epsylon/ufonet"
+
+    def run(self):
+        os.system("cd ufonet && . ufonet-env/bin/activate && python3 ufonet --gui")
 
 
 class GoldenEye(HackingTool):
@@ -114,13 +106,13 @@ class GoldenEye(HackingTool):
         "GoldenEye is a HTTP DoS Test Tool."
     )
     INSTALL_COMMANDS = [
-        "sudo git clone https://github.com/jseidl/GoldenEye.git;"
+        "sudo git clone https://github.com/jseidl/GoldenEye.git",
         "chmod -R 755 GoldenEye"
     ]
     PROJECT_URL = "https://github.com/jseidl/GoldenEye"
 
     def run(self):
-        os.system("cd GoldenEye ;sudo ./goldeneye.py")
+        os.system("cd GoldenEye && sudo python3 goldeneye.py")
         print("\033[96m Go to Directory \n [*] USAGE: ./goldeneye.py <url> [OPTIONS]")
 
 
@@ -128,18 +120,17 @@ class Saphyra(HackingTool):
     TITLE = "SaphyraDDoS"
     DESCRIPTION = "A complex python code to DDoS any website with a very easy usage.!\n"
     INSTALL_COMMANDS = [
-        "sudo su",
+        "sudo apt-get install -y python3-venv",
         "git clone https://github.com/anonymous24x7/Saphyra-DDoS.git",
-        "cd Saphyra-DDoS",
-        "chmod +x saphyra.py",
-        "python saphyra.py",
+        "cd Saphyra-DDoS && python3 -m venv saphyra-env",
+        "cd Saphyra-DDoS && chmod +x saphyra.py"
     ]
     PROJECT_URL = "https://github.com/anonymous24x7/Saphyra-DDoS"
 
     def run(self):
         url = input("Enter url>>> ")
         try:
-            os.system("python saphyra.py " + url)
+            os.system(f"cd Saphyra-DDoS && . saphyra-env/bin/activate && python saphyra.py {url}")
         except Exception:
             print("Enter a valid url.")
 
