@@ -1,12 +1,12 @@
 ### All in One Hacking tool For Hackers🥇
-![](https://img.shields.io/github/license/Z4nzu/hackingtool)
-![](https://img.shields.io/github/issues/Z4nzu/hackingtool)
-![](https://img.shields.io/github/issues-closed/Z4nzu/hackingtool)
+![](https://img.shields.io/github/license//hackingtool)
+![](https://img.shields.io/github/issues//hackingtool)
+![](https://img.shields.io/github/issues-closed//hackingtool)
 ![](https://img.shields.io/badge/Python-3-blue)
-![](https://img.shields.io/github/forks/Z4nzu/hackingtool)
-![](https://img.shields.io/github/stars/Z4nzu/hackingtool)
-![](https://img.shields.io/github/last-commit/Z4nzu/hackingtool)
-[![HitCount](http://hits.dwyl.com/Z4nzu/hackingtool.svg)](http://hits.dwyl.com/Z4nzu/hackingtool)
+![](https://img.shields.io/github/forks//hackingtool)
+![](https://img.shields.io/github/stars//hackingtool)
+![](https://img.shields.io/github/last-commit//hackingtool)
+[![HitCount](http://hits.dwyl.com//hackingtool.svg)](http://hits.dwyl.com//hackingtool)
 ![](https://img.shields.io/badge/platform-Linux%20%7C%20KaliLinux%20%7C%20ParrotOs-blue)
 
 #### Install Kali Linux in WIndows10 Without VirtualBox [YOUTUBE](https://youtu.be/BsFhpIDcd9I) or use Docker
@@ -76,7 +76,7 @@
 - [Breacher](https://github.com/s0md3v/Breacher)
 ### Wordlist Generator
 - [Cupp](https://github.com/Mebus/cupp.git)
-- [WordlistCreator](https://github.com/Z4nzu/wlcreator)
+- [WordlistCreator](https://github.com//wlcreator)
 - [Goblin WordGenerator](https://github.com/UndeadSec/GoblinWordGenerator.git)
 - [Password list (1.4 Billion Clear Text Password)](https://github.com/Viralmaniar/SMWYG-Show-Me-What-You-Got)
 ### Wireless attack tools
@@ -86,8 +86,8 @@
 - [Fluxion](https://github.com/thehackingsage/Fluxion)
 - [Wifiphisher](https://github.com/wifiphisher/wifiphisher)
 - [Wifite](https://github.com/derv82/wifite2)
-- [EvilTwin](https://github.com/Z4nzu/fakeap)
-- [Fastssh](https://github.com/Z4nzu/fastssh)
+- [EvilTwin](https://github.com//fakeap)
+- [Fastssh](https://github.com//fastssh)
 - Howmanypeople
 ### SQL Injection Tools
 - [Sqlmap tool](https://github.com/sqlmapproject/sqlmap)
@@ -204,11 +204,11 @@
 - [Crivo](https://github.com/GMDSantana/crivo)
 
 
-![](https://github.com/Z4nzu/hackingtool/blob/master/images/A00.png)
-![](https://github.com/Z4nzu/hackingtool/blob/master/images/A0.png)
-![](https://github.com/Z4nzu/hackingtool/blob/master/images/A1.png)
-![](https://github.com/Z4nzu/hackingtool/blob/master/images/A2.png)
-![](https://github.com/Z4nzu/hackingtool/blob/master/images/A4.png)
+![](https://github.com//hackingtool/blob/master/images/A00.png)
+![](https://github.com//hackingtool/blob/master/images/A0.png)
+![](https://github.com//hackingtool/blob/master/images/A1.png)
+![](https://github.com//hackingtool/blob/master/images/A2.png)
+![](https://github.com//hackingtool/blob/master/images/A4.png)
 
 ## Installation For Linux <img src="https://konpa.github.io/devicon/devicon.git/icons/linux/linux-original.svg" alt="linux" width="25" height="25"/></p><p align="center">
 
@@ -221,7 +221,7 @@
 
 ## Step : 1 Download hackingtool
 
-    git clone https://github.com/Z4nzu/hackingtool.git
+    git clone https://github.com//hackingtool.git
 
 ## Step : 2 Give Permission to hackingtool
     
@@ -286,10 +286,13 @@ Enter the options and continue.
 - [ ] Want to do automatic 
 
 ## Social Media :mailbox_with_no_mail:
-[![Twitter](https://img.shields.io/twitter/url?color=%231DA1F2&label=follow&logo=twitter&logoColor=%231DA1F2&style=flat-square&url=https%3A%2F%2Fwww.reddit.com%2Fuser%2FFatChicken277)](https://twitter.com/_Zinzu07)
-[![GitHub](https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github&link=https://github.com/Z4nzu/)](https://github.com/Z4nzu/)
+[![Website](https://img.shields.io/badge/-Website-brightgreen?style=flat-square&logo=web&link=https://itzbinar.netlify.app/)](https://itzbinar.netlify.app/)
+[![GitHub](https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github&link=https://github.com/itz-binar)](https://github.com/itz-binar)
+[![YouTube](https://img.shields.io/badge/-YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white&link=https://www.youtube.com/@Binar_tech)](https://www.youtube.com/@Binar_tech)
+[![TikTok](https://img.shields.io/badge/-TikTok-000000?style=flat-square&logo=tiktok&logoColor=white&link=https://www.tiktok.com/@itz._.binar)](https://www.tiktok.com/@itz._.binar)
+[![Telegram](https://img.shields.io/badge/-Telegram-2CA5E0?style=flat-square&logo=telegram&logoColor=white&link=https://t.me/itz_binar01)](https://t.me/itz_binar01)
 ##### Your Favourite Tool is not in hackingtool or Suggestions Please [CLICK HERE](https://forms.gle/b235JoCKyUq5iM3t8)
-![Z4nzu's github stats](https://github-readme-stats.vercel.app/api?username=Z4nzu&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
+![Mr.itzbinar's github stats](https://github-readme-stats.vercel.app/api?username=itz-binar&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
 #### Don't Forgot to share with Your Friends 
 ### The new Update get will soon stay updated
